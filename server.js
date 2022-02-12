@@ -15,7 +15,7 @@ const request = require('request');
 const { send } = require("process");
 
 // Liste de ville pour l'application
-const city = ["London", "Paris", "Madrid", "Roma", "New-York","Los Angeles"];
+const city = ["London,uk", "Paris,fr", "Madrid,es", "Rome,it", "New York City,us","Los Angeles,us"];
 
 // Spécifie les répertoires que l'app doit utiliser
 app.use("/src", express.static('./src/'));
@@ -74,5 +74,5 @@ function sendWeatherWithTimeOut(socket,index){
         getWeatherInfo(socket, createOption(city[index]));
         index = (index + 1) % city.length;
         sendWeatherWithTimeOut(socket, index);
-    }, 30000);
+    }, 5000);
 }
