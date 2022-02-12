@@ -1,0 +1,24 @@
+{
+  "name": "solaris",
+  "version": "1.0.0",
+  "description": "Programme qui affiche la météo en temps réel du ville",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.17.2",
+    "socket.io": "^4.4.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HarlausG/Solaris.git"
+  },
+  "author": "Evraerd Gauthier",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HarlausG/Solaris/issues"
+  },
+  "homepage": "https://github.com/HarlausG/Solaris#readme"
+}
