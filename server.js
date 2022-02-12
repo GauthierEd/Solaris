@@ -12,7 +12,7 @@ const io = new Server(server);
 
 // Config de request
 const request = require('request');
-const { send } = require("process");
+
 
 // Liste de ville pour l'application
 const city = ["London,uk", "Paris,fr", "Madrid,es", "Rome,it", "New York City,us","Los Angeles,us"];

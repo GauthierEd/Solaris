@@ -1,3 +1,5 @@
+const url = "https://openweathermap.org/img/wn/"
+
 const socket = io();
 
 socket.on("weather", (args) => {
@@ -29,6 +31,10 @@ function displayInfo(json){
     changeInnerHTML("#wind-speed",wind);
 
     let weather = json.weather[0].main;
+    changeInnerHTML("#weather-title", weather);
+    let weatherIcon = json.weather[0].icon;
+    let weatherImg = document.querySelector("#weather-img");
+    weatherImg.src = url + weatherIcon + ".png";
 }
 
 function changeInnerHTML(selector, content){
