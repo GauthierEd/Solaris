@@ -1,5 +1,5 @@
 const socket = io();
 
-socket.on("weather", function(e){
-    console.log(e);
-})
+socket.on("weather", (args) => {
+    console.log(args);
+});
