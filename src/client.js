@@ -24,11 +24,11 @@ function displayInfo(json){
 
     // Température ressentie de la ville en celcius
     let ressenti = json.main.feels_like;
-    changeInnerHTML("#temp-ressentie",ressenti);
+    changeInnerHTML("#temp-ressentie-value",ressenti);
 
     // Vitesse du vent en km/h
     let wind = json.wind.speed;
-    changeInnerHTML("#wind-speed",wind);
+    changeInnerHTML("#wind-speed-value",wind);
 
     let weather = json.weather[0].main;
     changeInnerHTML("#weather-title", weather);

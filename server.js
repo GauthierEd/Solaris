@@ -38,7 +38,7 @@ io.on('connection', (socket) => {
 });
 
 server.listen(3000, () => {
-    console.log("listening on : 3000");
+    console.log("Le serveur est lancé sur le port 3000");
 });
 
 
@@ -74,5 +74,5 @@ function sendWeatherWithTimeOut(socket,index){
         getWeatherInfo(socket, createOption(city[index]));
         index = (index + 1) % city.length;
         sendWeatherWithTimeOut(socket, index);
-    }, 5000);
+    }, 30000);
 }
