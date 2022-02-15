@@ -27,7 +27,7 @@ app.get('/', (req, res) => {
 });
 
 io.on('connection', (socket) => {
-    console.log("a user connected");
+    console.log("Un client est connecté au serveur");
     let index = 0;
     // Envoie du JSON au client directement à la connexion
     getWeatherInfo(socket, createOption(city[index]));

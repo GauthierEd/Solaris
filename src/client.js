@@ -30,8 +30,11 @@ function displayInfo(json){
     let wind = json.wind.speed;
     changeInnerHTML("#wind-speed-value",wind);
 
-    let weather = json.weather[0].main;
-    changeInnerHTML("#weather-title", weather);
+    // Description de la météo
+    let weather = json.weather[0].description;
+    changeInnerHTML("#weather-title",(weather[0].toUpperCase() + weather.substring(1)) );
+
+    // Icon de la météo envoyé par l'API OpenWeather
     let weatherIcon = json.weather[0].icon;
     let weatherImg = document.querySelector("#weather-img");
     weatherImg.src = url + weatherIcon + ".png";
