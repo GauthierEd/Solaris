@@ -13,6 +13,11 @@ const io = new Server(server);
 // Configuring request
 const request = require('request');
 
+// Configuring dotenv
+require('dotenv').config()
+const port = process.env.PORT;
+const timer = process.env.TIMER;
+const key = process.env.API_KEY;
 
 // City list for the application
 const city = ["London,uk", "Paris,fr", "Madrid,es", "Rome,it", "New York City,us","Los Angeles,us"];
@@ -34,11 +39,14 @@ io.on('connection', (socket) => {
     index = (index + 1) % city.length;
 
     // Send JSON every 30 seconds
-    sendWeatherWithTimeOut(socket, index);
+    setInterval(function(){
+        getWeatherInfo(socket, createOption(city[index]));
+        index = (index + 1) % city.length;
+    }, timer, index);
 });
 
-server.listen(3000, () => {
-    console.log("The server is running on port 3000");
+server.listen(port, () => {
+    console.log("The server is running on port "+ port);
 });
 
 
@@ -70,17 +78,8 @@ function createOption(city){
         qs: {q: city, lang: 'fr', units: 'metric'},
         headers: {
             'x-rapidapi-host': 'community-open-weather-map.p.rapidapi.com',
-            'x-rapidapi-key': '4b4f95b09fmsh03d913b83287832p17f84cjsne750ead9d017',
+            'x-rapidapi-key': key,
             useQueryString: true
         }
     };
-}
-
-// Fonction qui toutes les 30 secondes envoie au client le JSON de getWeatherInfo()
-function sendWeatherWithTimeOut(socket,index){
-    setTimeout(function(){
-        getWeatherInfo(socket, createOption(city[index]));
-        index = (index + 1) % city.length;
-        sendWeatherWithTimeOut(socket, index);
-    }, 30000);
 }
