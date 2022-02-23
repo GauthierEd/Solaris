@@ -11,6 +11,8 @@ Télécharger le projet sur la page github.
 
 A l'aide de l'invité de commande, se rendre grâce à la commande **cd** dans le dossier de l'application web. Rentrer la commande **npm install** pour installer l'application.
 
+Créer un fichier **.env** dans le répertoire de l'app sous la même forme que le fichier **.env_sample** en remplaçant les valeurs exemples par les votres.
+
 
 # Utilisation :
 A l'aide de l'invité de commande, se rendre grâce à la commande **cd** dans le dossier de l'application web puis rentrer la commande **node server.js**.
