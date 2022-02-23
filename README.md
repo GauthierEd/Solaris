@@ -5,9 +5,10 @@ Solaris est une petite application web qui affiche la météo en temps réel d'u
 
 # Installation :
 ### Pré-requis :
-Installer node js sur votre ordinateur
+Installer node js sur votre ordinateur.
 
-Télécharger le projet sur la page github
+Télécharger le projet sur la page github.
+
 A l'aide de l'invité de commande, se rendre grâce à la commande **cd** dans le dossier de l'application web. Rentrer la commande **npm install** pour installer l'application.
 
 
