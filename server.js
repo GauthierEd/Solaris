@@ -1,23 +1,23 @@
-// Config de express
+// Configuring express
 const express = require("express");
 const app = express();
 
-// Config de http
+// Configuring http
 const http = require("http");
 const server = http.createServer(app);
 
-// Config de socket.io
+// Configuring socket.io
 const { Server } = require("socket.io");
 const io = new Server(server);
 
-// Config de request
+// Configuring request
 const request = require('request');
 
 
-// Liste de ville pour l'application
+// City list for the application
 const city = ["London,uk", "Paris,fr", "Madrid,es", "Rome,it", "New York City,us","Los Angeles,us"];
 
-// Spécifie les répertoires que l'app doit utiliser
+// Specifies the directories that the app need to work
 app.use("/src", express.static('./src/'));
 app.use("/styles", express.static('./styles/'));
 
@@ -27,34 +27,42 @@ app.get('/', (req, res) => {
 });
 
 io.on('connection', (socket) => {
-    console.log("Un client est connecté au serveur");
+    console.log("A client is connected to the server");
     let index = 0;
-    // Envoie du JSON au client directement à la connexion
+    // Sends JSON to the client directly on connection
     getWeatherInfo(socket, createOption(city[index]));
     index = (index + 1) % city.length;
 
-    // Envoie du JSON toutes les 30 secondes
+    // Send JSON every 30 seconds
     sendWeatherWithTimeOut(socket, index);
 });
 
 server.listen(3000, () => {
-    console.log("Le serveur est lancé sur le port 3000");
+    console.log("The server is running on port 3000");
 });
 
 
-// Fonction qui renvoie sous la forme d'un JSON la réponse de l'API Weather
+// Function that get the weather information from the API
 function getWeatherInfo(socket, option) {
     request(option, function (error, response, body) {
         if (error) {
             throw new Error(error);
         } else {
             weather = JSON.parse(body);
-            socket.emit("weather", weather);
+            sendWeatherInfoToClient(socket, weather);
         }
     });
 }
 
-// Fonction qui renvoi les options pour l'API Weather en prenant en parametre la ville souhaité
+
+// Function that send weather information JSON to the client
+function sendWeatherInfoToClient(socket, weather){
+    socket.emit("weather", weather);
+}
+
+
+
+// Function that returns options for the OpenWeather API by setting the desired city in parameter
 function createOption(city){
     return options = {
         method: 'GET',
