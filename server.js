@@ -56,8 +56,13 @@ function getWeatherInfo(socket, option) {
         if (error) {
             throw new Error(error);
         } else {
-            weather = JSON.parse(body);
-            sendWeatherInfoToClient(socket, weather);
+            // Check is API response is a valid JSON
+            try {
+                weather = JSON.parse(body);
+                sendWeatherInfoToClient(socket, weather);
+            } catch(e){
+                console.error("Parsing error:", e);
+            }
         }
     });
 }
